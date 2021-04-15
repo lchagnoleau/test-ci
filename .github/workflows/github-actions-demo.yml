@@ -1,0 +1,16 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install Linux Dependencies
+        run : sudo apt install gcc cmake gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libgtest-dev
+      - name: CMake configure
+        run : cmake -Bbuild
+      - name: CMake build
+        run : cmake --build build
+      - name: Launch tests
+        run : cd build && make test
